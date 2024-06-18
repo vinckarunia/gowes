@@ -7,7 +7,7 @@ function getDataOnEnter(event){
 }
 
 function getData(toPage=1){
-    let url = baseUrl+'/api/book';
+    let url = baseUrl+'/api/bicycle';
     if(toPage){
         $('[name="_page"]').val(toPage);
     }
@@ -29,19 +29,19 @@ function getData(toPage=1){
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="single-product-item text-center">
                         <div class="products-images">
-                            <a href="/book/${item.id}" class="product-thumbnail">
-                                <img src="${item.cover}" alt="Product Images" height="300">
+                            <a href="/bicycle/${item.id}" class="product-thumbnail">
+                                <img src="${item.image}" alt="Product Images" height="300">
                             </a>
                             <div class="product-actions">
-                                <a href="/book/${item.id}"><i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span></a>
+                                <a href="/bicycle/${item.id}"><i class="p-icon icon-plus"></i><span class="tool-tip">Quick View</span></a>
                                 <a href="#"><i class="p-icon icon-bag2"></i> <span class="tool-tip">Add to cart</span></a>
                             </div>
                         </div>
                         <div class="product-content">
-                            <h6 class="product-title">
-                                <a href="/book/${item.id}">${item.title}</a>
+                            <h6 class="product-model">
+                                <a href="/bicycle/${item.id}">${item.model}</a>
                             </h6>
-                            <small class="text-color-primary">${item.author}</small>
+                            <small class="text-color-primary">${item.manufacturer}</small>
                             <div class="product-price">
                                 <span class="new-price">IDR ${parseFloat(item.price).toLocaleString()}</span>
                             </div>
@@ -61,7 +61,7 @@ function getData(toPage=1){
             template += 
             `<li>
                 <a class="prev page-numbers" onclick="getData(1)">
-                    <i class="icon-chevron-left"></i>&nbsp;&nbsp;&nbsp;Min Page
+                    <i class="icon-chevron-left"></i>&nbsp;&nbsp;&nbsp;First Page
                 </a>
             </li>`; 
         }
@@ -99,7 +99,7 @@ function getData(toPage=1){
             template += 
             `<li>
                 <a class="next page-numbers" onclick="getData(${max_page})">
-                    Max Page<i class="icon-chevron-right"></i>
+                    Last Page<i class="icon-chevron-right"></i>
                 </a>
             </li>`; 
         }
@@ -124,8 +124,8 @@ function getData(toPage=1){
             Swal.fire({
                 position: "top-end",
                 icon: "warning",
-                title: "Yaah...",
-                html: "Produk yang lagi dicari tidak ada nih",
+                title: "Maaf",
+                html: "Produk tidak ditemukan",
                 showConfirmButton: false,
                 timer: 5000
             });

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use App\Models\Book;
+use App\Models\Bicycle;
 use OpenApi\Annotations as OA; use Validator;
 
 /**
@@ -29,12 +29,12 @@ use OpenApi\Annotations as OA; use Validator;
  *     )
  * )
  */
-class BookController extends Controller
+class BicycleController extends Controller
 {
     /** 
      * @OA\Get(
-     *     path="/api/book",
-     *     tags={"book"},
+     *     path="/api/bicycle",
+     *     tags={"bicycle"},
      *     summary="Display a listing of the items",
      *     operationId="index",
      *     @OA\Response(
@@ -74,9 +74,9 @@ class BookController extends Controller
      *         )
      *     ),
      *     @OA\Parameter(
-     *         name="_publisher",
+     *         name="_manufacturer",
      *         in="query",
-     *         description="search by publisher like name",
+     *         description="search by manufacturer like name",
      *         required=false,
      *         @OA\Schema(
      *             type="string"
@@ -101,10 +101,10 @@ class BookController extends Controller
             $page                 = $data['filter']['_page']  = (@$data['filter']['_page'] ? intval($data['filter']['_page']) : 1);
             $limit                = $data['filter']['_limit'] = (@$data['filter']['_limit'] ? intval($data['filter']['_limit']) : 1000);
             $offset               = ($page?($page-1)*$limit:0);
-            $data['products']     = Book::whereRaw('1 = 1');
+            $data['products']     = Bicycle::whereRaw('1 = 1');
             
             if($request->get('_search')){
-                $data['products'] = $data['products']->whereRaw('(LOWER(title) LIKE "%'.strtolower($request->get('_search')).'%")');
+                $data['products'] = $data['products']->whereRaw('(LOWER(model) LIKE "%'.strtolower($request->get('_search')).'%")');
             }
             if($request->get('_type')){
                 $data['products'] = $data['products']->whereRaw('LOWER(type) = "'.strtolower($request->get('_type')).'"');
@@ -112,17 +112,17 @@ class BookController extends Controller
             if($request->get('_sort_by')){
             switch ($request->get('_sort_by')) {
                 default:
-                case 'latest_publication':
-                $data['products'] = $data['products']->orderBy('publication_year','DESC');
+                case 'latest_production':
+                $data['products'] = $data['products']->orderBy('production_year','DESC');
                 break;
                 case 'latest_added':
                 $data['products'] = $data['products']->orderBy('created_at','DESC');
                 break;
                 case 'name_asc':
-                $data['products'] = $data['products']->orderBy('title','ASC');
+                $data['products'] = $data['products']->orderBy('model','ASC');
                 break;
                 case 'name_desc':
-                $data['products'] = $data['products']->orderBy('title','DESC');
+                $data['products'] = $data['products']->orderBy('model','DESC');
                 break;
                 case 'price_asc':
                 $data['products'] = $data['products']->orderBy('price','ASC');
@@ -147,8 +147,8 @@ class BookController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/api/book",
-     *     tags={"book"},
+     *     path="/api/bicycle",
+     *     tags={"bicycle"},
      *     summary="Store a newly created item",
      *     operationId="store",
      *     @OA\Response(
@@ -165,11 +165,11 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
-     *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-     *                      "price": 85000}
+     *             ref="#/components/schemas/Bicycle",
+     *             example={"model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike", "manufacturer": "Bombtrack", "nation": "Taiwan", "production_year": "2024",
+     *                      "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
+     *                      "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
+     *                      "price": 15000000}
      *         ),
      *     ),
      *      security={{"passport_token_ready":{}, "passport":{}}}
@@ -179,15 +179,15 @@ class BookController extends Controller
     {
         try{
             $validator = Validator::make($request->all(), [
-                'title'  => 'required|unique:books',
-                'author'  => 'required|max:100',
+                'model'  => 'required|unique:bicycle',
+                'manufacturer'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-            $book = new Book;
-            $book->fill($request->all())->save();
-            return $book;
+            $bicycle = new Bicycle;
+            $bicycle->fill($request->all())->save();
+            return $bicycle;
 
         } catch(\Exception $exception) {
             throw new HttpException(400, "Invalid Data : {$exception->getMessage()}");
@@ -196,8 +196,8 @@ class BookController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
+     *     path="/api/bicycle/{id}",
+     *     tags={"bicycle"},
      *     summary="Display the specified item",
      *     operationId="show",
      *     @OA\Response(
@@ -229,17 +229,17 @@ class BookController extends Controller
      */
     public function show($id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $bicycle = Bicycle::find($id);
+        if(!$bicycle){
             throw new HttpException(404, 'Item not found');
         }
-        return $book;
+        return $bicycle;
     }
 
     /**
      * @OA\Put(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
+     *     path="/api/bicycle/{id}",
+     *     tags={"bicycle"},
      *     summary="Update the specified item",
      *     operationId="update",
      *     @OA\Response(
@@ -271,11 +271,11 @@ class BookController extends Controller
      *         required=true,
      *         description="Request body description",
      *         @OA\JsonContent(
-     *             ref="#/components/schemas/Book",
-     *             example={"title": "Eating Clean", "author": "Inge Tumiwa-Bachrens", "publisher": "Kawan Pustaka", "publication_year": "2016",
-     *                      "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
-     *                      "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-     *                      "price": 85000}
+     *             ref="#/components/schemas/Bicycle",
+     *             example={"model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike", "manufacturer": "Bombtrack", "nation": "Taiwan", "production_year": "2024",
+     *                      "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
+     *                      "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
+     *                      "price": 15000000}
      *         ),
      *     ),
      *      security={{"passport_token_ready":{}, "passport":{}}}
@@ -283,20 +283,20 @@ class BookController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $bicycle = Bicycle::find($id);
+        if(!$bicycle){
             throw new HttpException(404, 'Item not found');
         }
 
         try{
             $validator = Validator::make($request->all(), [
-                'title'  => 'required|unique:books',
-                'author'  => 'required|max:100',
+                'model'  => 'required|unique:bicycle',
+                'manufacturer'  => 'required|max:100',
             ]);
             if ($validator->fails()) {
                 throw new HttpException(400, $validator->messages()->first());
             }
-           $book->fill($request->all())->save();
+           $bicycle->fill($request->all())->save();
            return response()->json(array('message'=>'Updated successfully'), 200);
 
         } catch(\Exception $exception) {
@@ -306,8 +306,8 @@ class BookController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/api/book/{id}",
-     *     tags={"book"},
+     *     path="/api/bicycle/{id}",
+     *     tags={"bicycle"},
      *     summary="Remove the specified item",
      *     operationId="destroy",
      *     @OA\Response(
@@ -340,13 +340,13 @@ class BookController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::find($id);
-        if(!$book){
+        $bicycle = Bicycle::find($id);
+        if(!$bicycle){
             throw new HttpException(404, 'Item not found');
         }
 
         try {
-            $book->delete();
+            $bicycle->delete();
             return response()->json(array('message'=>'Deleted successfully'), 200);
 
         } catch(\Exception $exception) {

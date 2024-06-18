@@ -4,12 +4,12 @@
         <meta charset="utf">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{csrf_token()}}">
-        <meta name="description" content="Windows to the world right on your doorstep!">
-        <meta name="keywords" content="ecommerce, book">
+        <meta name="description" content="Pedal, Explore, Repeat">
+        <meta name="keywords" content="ecommerce, bicycle">
         <meta name="author" content="Vincent - 422023012">
 
-        <title>@yield('title') | Vincent - 422023012</title>
-        <link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.ico')}}">
+        <title>@yield('title') | GoWes</title>
+        <link rel="icon" type="image/x-icon" href="{{asset('assets/images/favicon.png')}}">
         <!--CSS ASSETS-->
         <link rel="stylesheet" type="text/css" href="{{(asset('assets/css/vendor/bootstrap.min.css'))}}">
         <link rel="stylesheet" type="text/css" href="{{(asset('assets/css/vendor/linearicons.min.css'))}}">

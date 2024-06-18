@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
-use App\Http\Controllers\API\BookController;
+use App\Http\Controllers\API\BicycleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,14 +15,14 @@ Route::prefix('user')->group(function(){
     Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 });
 
-Route::resource('book', BookController::class, [
+Route::resource('bicycle', BicycleController::class, [
     'only'=>[
         'index',
         'show'
     ]
 ]);
 
-Route::resource('book', BookController::class, [
+Route::resource('bicycle', BicycleController::class, [
     'except'=>[
         'index',
         'show'

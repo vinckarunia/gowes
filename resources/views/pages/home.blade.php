@@ -20,19 +20,14 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="about-us-content_6 text-center">
-                            <h2>WTTW</h2>
+                            <h2>GoWes</h2>
                             <p>
                                 <small>
-                                Whether you're searching for a the latest bestsellers, timeless classics,
-                                or hidden gems, our carefully curated collection has something for everyone.
-                                Our passionate staff is dedicated to helping you find the perfect read, 
-                                and our cozy, welcoming environment invites you to linger
-                                and explore. Join our community of book lovers and let us help you.
-                                Visit us today and experience the joy of getting lost in a great book &#10084;
+                                At GoWes, we believe that cycling is more than just a mode of transportation – it's a lifestyle. Our mission is to fuel your passion for adventure and exploration, whether you're a seasoned cyclist or just beginning your journey.
                                 </small>
                             </p>
-                            <p class="mt-5">Find your window to the world! Or, even, 
-                                <span class="text-color-primary">unlock hidden worlds, one page at a time!</span> 
+                            <p class="mt-5">Every pedal stroke brings a new adventure. Visit us today and embark on your next cycling journey with confidence. 
+                                <span class="text-color-primary">Let's ride together!</span> 
                             </p>
                         </div>
                     </div>
@@ -48,7 +43,7 @@
                         <div class="banner-video-box">
                             <img src="{{asset('assets/images/library.jpg')}}" alt="" width="962px" height="578">
                             <div class="video-icon">
-                                <a href="https://youtu.be/z8UUYS4bIfw" class="popup-youtube"><i class="linear-ic-play"></i></a>
+                                <a href="https://youtu.be/wFAxiXhx-sA?si=zL5_8NiWgUIg6udc" class="popup-youtube"><i class="linear-ic-play"></i></a>
                             </div>
                         </div>
                     </div>

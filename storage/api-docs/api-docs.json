@@ -29,8 +29,8 @@
                                 "$ref": "#/components/schemas/User"
                             },
                             "example": {
-                                "name": "Trixie Christy Sumantri",
-                                "email": "trix.chris.sum@gmail.com",
+                                "name": "Vincent Karunia",
+                                "email": "vincent.422023012@civitas.ukrida.ac.id",
                                 "password": "Pass123",
                                 "password_confirmation": "Pass123"
                             }
@@ -73,7 +73,7 @@
                                 "$ref": "#/components/schemas/User"
                             },
                             "example": {
-                                "email": "trix.chris.sum@gmail.com",
+                                "email": "vincent.422023012@civitas.ukrida.ac.id",
                                 "password": "Pass123"
                             }
                         }
@@ -143,10 +143,10 @@
                 ]
             }
         },
-        "/api/book": {
+        "/api/bicycle": {
             "get": {
                 "tags": [
-                    "book"
+                    "bicycle"
                 ],
                 "summary": "Display a listing of the items",
                 "operationId": "index",
@@ -183,9 +183,9 @@
                         }
                     },
                     {
-                        "name": "_publisher",
+                        "name": "_manufacturer",
                         "in": "query",
-                        "description": "search by publisher like name",
+                        "description": "search by manufacturer like name",
                         "required": false,
                         "schema": {
                             "type": "string"
@@ -215,7 +215,7 @@
             },
             "post": {
                 "tags": [
-                    "book"
+                    "bicycle"
                 ],
                 "summary": "Store a newly created item",
                 "operationId": "store",
@@ -225,16 +225,16 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Book"
+                                "$ref": "#/components/schemas/Bicycle"
                             },
                             "example": {
-                                "title": "Eating Clean",
-                                "author": "Inge Tumiwa-Bachrens",
-                                "publisher": "Kawan Pustaka",
-                                "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
-                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-                                "price": 85000
+                                "model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike",
+                                "manufacturer": "Bombtrack",
+                                "nation": "Taiwan",
+                                "production_year": "2024",
+                                "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
+                                "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
+                                "price": 15000000
                             }
                         }
                     }
@@ -265,10 +265,10 @@
                 ]
             }
         },
-        "/api/book/{id}": {
+        "/api/bicycle/{id}": {
             "get": {
                 "tags": [
-                    "book"
+                    "bicycle"
                 ],
                 "summary": "Display the specified item",
                 "operationId": "show",
@@ -313,7 +313,7 @@
             },
             "put": {
                 "tags": [
-                    "book"
+                    "bicycle"
                 ],
                 "summary": "Update the specified item",
                 "operationId": "update",
@@ -335,16 +335,16 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Book"
+                                "$ref": "#/components/schemas/Bicycle"
                             },
                             "example": {
-                                "title": "Eating Clean",
-                                "author": "Inge Tumiwa-Bachrens",
-                                "publisher": "Kawan Pustaka",
-                                "publication_year": "2016",
-                                "cover": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1482170055i/33511107.jpg",
-                                "description": "Menjadi sehat adalah impian semua orang. Makanan yang selama ini kita pikir sehat ternyata belum tentu 'sehat' bagi tubuh kita.",
-                                "price": 85000
+                                "model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike",
+                                "manufacturer": "Bombtrack",
+                                "nation": "Taiwan",
+                                "production_year": "2024",
+                                "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
+                                "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
+                                "price": 15000000
                             }
                         }
                     }
@@ -384,7 +384,7 @@
             },
             "delete": {
                 "tags": [
-                    "book"
+                    "bicycle"
                 ],
                 "summary": "Remove the specified item",
                 "operationId": "destroy",
@@ -437,15 +437,15 @@
     },
     "components": {
         "schemas": {
-            "Book": {
-                "title": "Book model",
-                "description": "Book model",
+            "Bicycle": {
+                "title": "Bicycle model",
+                "description": "Bicycle model",
                 "required": [
-                    "title",
-                    "author"
+                    "model",
+                    "manufacturer"
                 ],
                 "xml": {
-                    "name": "Book"
+                    "name": "Bicycle"
                 }
             },
             "User": {

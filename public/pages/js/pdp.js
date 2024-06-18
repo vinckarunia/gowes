@@ -1,20 +1,20 @@
 function getDataByWindowUrlKey(){
     let windowUrl = $(location).attr('href'); 
     let windowUrlKey = windowUrl.replace(/\/\s*$/, "").split('/').pop();
-    let url = baseUrl+'/api/book/'+windowUrlKey;
+    let url = baseUrl+'/api/bicycle/'+windowUrlKey;
     
     axios.get(url,{},apiHeaders)
     .then(function (response) {
       console.log('[DATA] response..',response.data);
       let template = '';
 
-      $('.product-img-main-href').attr('href',response.data.cover);
-      $('.product-img-main-src').attr('src',response.data.cover);
-      $('#product-name').html(response.data.title);
+      $('.product-img-main-href').attr('href',response.data.image);
+      $('.product-img-main-src').attr('src',response.data.image);
+      $('#product-name').html(response.data.model);
       $('#product-price').html('IDR '+parseFloat(response.data.price).toLocaleString());
       $('#product-description').html(response.data.description);
-      $('#product-author').html(response.data.author);
-      $('#product-publisher').html('First Published '+response.data.publication_year+' by '+response.data.publisher);
+      $('#product-manufacturer').html(response.data.manufacturer);
+      $('#product-nation').html('Produced in '+response.data.nation);
 
       // START -- note, unless you have these data in a database structure, here we are hardcoding them for display purposes
         // review
@@ -34,7 +34,7 @@ function getDataByWindowUrlKey(){
           $('.product-add-to-cart-is-disabled').show();
         }
         // tag
-        let collectionOfTag = ['Book', 'E-Book', 'Best Seller', 'Fiction', 'Education','Literature', 'Classics', 'Real Event', 'Young Adult', 'Religion','Health', 'Comic', 'Horror', 'Poem', 'Filmed', 'In English', 'In Indonesian'];
+        let collectionOfTag = ['Bicycle', 'BMX', 'City Bikes', 'Hybrid Bikes', 'Cyclocross Bikes','Fitness Bikes', 'Gravel Bikes', 'Kids Bikes', 'Mountain Bikes', 'Road Bikes','Randonneur Bikes', 'Touring Bikes', 'Triathlon Bikes'];
         let selectedTags    = collectionOfTag.sort(() => .5 - Math.random()).slice(0, 4); // only get 4, randomly, from collectionOfTag
         template = '';
         for (let index = 0; index < selectedTags.length; index++) {
@@ -50,8 +50,8 @@ function getDataByWindowUrlKey(){
         Swal.fire({
           position: "top-end",
           icon: "warning",
-          title: "Yaah...",
-          html: "Produk yang lagi dicari tidak ada nih",
+          title: "Maaf",
+          html: "Produk tidak ditemukan",
           showConfirmButton: false,
           timer: 5000
         });
