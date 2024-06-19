@@ -111,10 +111,6 @@ class BicycleController extends Controller
             }
             if($request->get('_sort_by')){
             switch ($request->get('_sort_by')) {
-                default:
-                case 'latest_production':
-                $data['products'] = $data['products']->orderBy('production_year','DESC');
-                break;
                 case 'latest_added':
                 $data['products'] = $data['products']->orderBy('created_at','DESC');
                 break;
@@ -166,10 +162,10 @@ class BicycleController extends Controller
      *         description="Request body description",
      *         @OA\JsonContent(
      *             ref="#/components/schemas/Bicycle",
-     *             example={"model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike", "manufacturer": "Bombtrack", "nation": "Taiwan", "production_year": "2024",
+     *             example={"model": "Cannondale TOPSTONE 4 Gravelbike", "manufacturer": "Cannondale", "nation": "United States",
      *                      "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
-     *                      "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
-     *                      "price": 15000000}
+     *                      "description": "Sepeda jalan berkerikil yang sangat mumpuni dan serbaguna. Dibangun untuk mengejar cakrawala, menjelajahi rute yang jarang dilalui, atau mempercepat perjalanan Anda. Sederhana, andal, dan sangat menyenangkan, Cannondale Topstone Alloy adalah sepeda kerikil yang dibuat untuk mereka yang menyukai petualangan – dan bernilai. Berguling ringan dan bebas, atau memuatnya untuk jangka panjang, pengendaraan Topstone yang nyaman, penanganan yang percaya diri, dan kemampuan untuk melakukan apa pun menjadikannya mitra sempurna di jalan apa pun, di mana pun. Kemampuan yang luas. Jarak bebas untuk ban besar 45mm memungkinkan Anda melaju lebih jauh ke medan kasar, dan menikmati cengkeraman dan kenyamanan lebih di setiap pengendaraan. Muat. Mulai tersedia. Dengan banyak perlengkapan dan dudukan botol air pada rangka dan garpu, Topstone siap memuat dan melakukan perjalanan jauh. Sudut seperti Bos. Melewati masa sulit dan keluar sambil tersenyum. Dipimpin oleh geometri kemudi OutFront Cannondale, Topstone menawarkan penanganan yang sangat stabil saat memotong, dan ringan & gesit di mana pun.",
+     *                      "price": 20000000}
      *         ),
      *     ),
      *      security={{"passport_token_ready":{}, "passport":{}}}
@@ -272,7 +268,7 @@ class BicycleController extends Controller
      *         description="Request body description",
      *         @OA\JsonContent(
      *             ref="#/components/schemas/Bicycle",
-     *             example={"model": "BOMBTRACK BEYOND 24 inch Junior Gravel Bike", "manufacturer": "Bombtrack", "nation": "Taiwan", "production_year": "2024",
+     *             example={"model": "BOMBTRACK BEYOND Junior Gravel Bike", "manufacturer": "Bombtrack", "nation": "Taiwan",
      *                      "image": "https://www.bmtbonline.com/WebRoot/Store10/Shops/61513316/6210/7FB1/4374/F56C/CD21/0A0C/6D0E/9DBD/FBBeyondJunior_web_m.jpg",
      *                      "description": "Bombtrack tidak melupakan para penjelajah kecil di luar sana. Beyond Junior adalah versi Beyond yang diperkecil dengan ketinggian standover yang rendah sehingga si bungsu dapat melakukan petualangan kecilnya sendiri atau mengikuti tamasya kelompok. Rangka aluminium memiliki semua perlengkapan yang diperlukan dan garpu aluminium memungkinkan anak membawa sebanyak atau sesedikit yang mereka inginkan.",
      *                      "price": 15000000}

@@ -102,18 +102,7 @@ function getData(toPage=1){
                     Last Page<i class="icon-chevron-right"></i>
                 </a>
             </li>`; 
-        }
-        if (max_page > 1) {
-            template += 
-            `<li>
-                <select class="page-numbers" id="jumpPageNumber" onchange="jumpToPage(this.value)">
-                    <option value="" disabled>Jump to page</option>`;
-            for (let i = 1; i <= max_page; i++) {
-                template += `<option value="${i}" ${i === response.data.filter._page ? 'selected' : ''}>${i}</option>`;
-            }
-            template += `</select>
-            </li>`;
-        }        
+        } 
         $(id_el_list + '-pagination').html(template);
         $('[name="_page"]').val(response.data.filter._page);
         // END---- pagination

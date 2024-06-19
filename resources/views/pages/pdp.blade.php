@@ -31,9 +31,9 @@
 
                         </div>
                         <div class="product-details-thumbs-2 slider-thumbs-2">
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/1-100x100.webp')}}" alt="product image thumb" class="product-img-main-src"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/1-100x100.jpg')}}" alt="product image thumb" class="product-img-main-src"></div>
                             @for($i=0;$i<3;$i++);
-                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.webp')}}" alt="product image thumb"></div>
+                            <div class="sm-image"><img src="{{asset('assets/images/product/small/2-100x100.jpg')}}" alt="product image thumb"></div>
                             @endfor
                         </div>
                     </div>

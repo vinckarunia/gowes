@@ -32,7 +32,6 @@ class Bicycle extends Model
         'model',
         'manufacturer',
         'nation',
-        'production_year',
         'image',
         'description',
         'price',

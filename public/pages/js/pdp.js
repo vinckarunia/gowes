@@ -39,7 +39,6 @@ function getDataByWindowUrlKey(){
         template = '';
         for (let index = 0; index < selectedTags.length; index++) {
           template += '<a href="#">'+selectedTags[index]+'</a>'+(index!=selectedTags.length-1?', ':'');
-
         }
         $('#product-tags').html(template);
       // END ----
